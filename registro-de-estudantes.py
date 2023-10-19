@@ -38,6 +38,11 @@ def calcularMediaGeral():
 
     print(f"A média das notas dos estudantes foi: {media}")
 
+def salvarRegistrosEmTxt():
+    with open('alunos.txt', 'w') as arquivo_de_alunos:
+        for estudante in estudantes:            
+            arquivo_de_alunos.write(f"{estudante['id']}, {estudante['nome']}, {estudante['notas']}\n")
+
 estudantes = []
 while(True):
     print("-\n| Sistema de Gerenciamento de Registro de Estudantes |\n-\n" +
@@ -60,6 +65,8 @@ while(True):
             procurarAlunoPeloId(int(input("Digite o ID do aluno que deseja pesquisar: ")))
         case "4":            
             calcularMediaGeral()
+        case "5":
+            salvarRegistrosEmTxt()
         case "7":
             sys.exit()
         case _:
