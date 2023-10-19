@@ -12,6 +12,10 @@ def adicionarAluno():
     
     return estudantes.append({"id": id, "nome": nome, "notas": notas})
 
+def exibirAlunos():
+    for estudante in estudantes:
+        print(f"{estudante}")
+
 estudantes = []
 while(True):
     print("-\n| Sistema de Gerenciamento de Registro de Estudantes |\n-\n" +
@@ -28,6 +32,8 @@ while(True):
     match opcao:
         case "1":            
             adicionarAluno()
+        case "2":
+            exibirAlunos()
         
         case "7":
             sys.exit()
