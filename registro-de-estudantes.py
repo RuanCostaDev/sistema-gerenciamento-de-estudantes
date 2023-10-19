@@ -16,6 +16,16 @@ def exibirAlunos():
     for estudante in estudantes:
         print(f"{estudante}")
 
+def procurarAlunoPeloId(id):
+
+    for estudante in estudantes:
+        if estudante['id'] == id:
+            print(f"Encontrado: {estudante}")
+            return  
+        
+        
+    print(f"Aluno com o ID: {id}, não encontrado!")
+
 estudantes = []
 while(True):
     print("-\n| Sistema de Gerenciamento de Registro de Estudantes |\n-\n" +
@@ -34,7 +44,8 @@ while(True):
             adicionarAluno()
         case "2":
             exibirAlunos()
-        
+        case "3":
+            procurarAlunoPeloId(int(input("Digite o ID do aluno que deseja pesquisar: ")))
         case "7":
             sys.exit()
         case _:
