@@ -43,6 +43,29 @@ def salvarRegistrosEmTxt():
         for estudante in estudantes:            
             arquivo_de_alunos.write(f"{estudante['id']}, {estudante['nome']}, {estudante['notas']}\n")
 
+def carregarRegistroTxt():
+    listaDeRetorno = []
+    with open('alunos.txt')as arquivo_de_alunos:
+        for line in arquivo_de_alunos:
+            aluno = line.split(sep=',')
+            for i in range(0, len(aluno)):
+
+                aluno[i] = aluno[i].strip().replace("[", "").replace("]", "")                
+            listaDeRetorno.append(aluno)
+    #print(listaDeRetorno)
+
+    for lista in listaDeRetorno:
+        registroDeAluno = {"id": 0, "nome": "", "notas": []}
+        for i in range(0, len(lista)):
+            if i == 0:
+                registroDeAluno["id"] = int(lista[0])
+            elif i == 1:
+                registroDeAluno["nome"] = lista[1]
+            elif i > 1:
+                registroDeAluno['notas'].append(int(lista[i]))
+        estudantes.append(registroDeAluno)
+    print("Carregamento Realizado com sucesso!")
+
 estudantes = []
 while(True):
     print("-\n| Sistema de Gerenciamento de Registro de Estudantes |\n-\n" +
@@ -67,6 +90,8 @@ while(True):
             calcularMediaGeral()
         case "5":
             salvarRegistrosEmTxt()
+        case "6":
+            carregarRegistroTxt()
         case "7":
             sys.exit()
         case _:
