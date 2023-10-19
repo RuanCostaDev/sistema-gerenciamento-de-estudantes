@@ -26,6 +26,18 @@ def procurarAlunoPeloId(id):
         
     print(f"Aluno com o ID: {id}, não encontrado!")
 
+def calcularMediaGeral():
+    quantidadeDeNotas = 0
+    somaDasNotas = 0
+    for estudante in estudantes:
+        print(estudante)
+        somaDasNotas += sum(estudante['notas'])
+        quantidadeDeNotas += len(estudante['notas'])
+
+    media = somaDasNotas/quantidadeDeNotas
+
+    print(f"A média das notas dos estudantes foi: {media}")
+
 estudantes = []
 while(True):
     print("-\n| Sistema de Gerenciamento de Registro de Estudantes |\n-\n" +
@@ -46,6 +58,8 @@ while(True):
             exibirAlunos()
         case "3":
             procurarAlunoPeloId(int(input("Digite o ID do aluno que deseja pesquisar: ")))
+        case "4":            
+            calcularMediaGeral()
         case "7":
             sys.exit()
         case _:
